@@ -4,7 +4,7 @@
  * Node.js 创建第一个应用
  */
 
-// 引入 required 模块
+// 使用 require 指令来引入 http 模块
 var http = require("http");
 
 // 创建服务器，绑定 8888 端口
