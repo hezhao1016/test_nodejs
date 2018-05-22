@@ -10,3 +10,4 @@ function greet(name) {
 module.exports.hello = hello;
 module.exports.greet = greet;
 module.exports.foo = function () { return 'foo'; };
+module.exports.x = "X"; // 输出变量

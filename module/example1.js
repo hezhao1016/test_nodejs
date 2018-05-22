@@ -1,4 +1,4 @@
-function Hello(){
+function Example1(){
     var name;
     this.setName = function (thyName){
         name = thyName;
@@ -9,4 +9,4 @@ function Hello(){
 };
 
 // 把Hello对象作为模块的输出暴露出去
-module.exports = Hello;
+module.exports = Example1;
