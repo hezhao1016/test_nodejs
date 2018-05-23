@@ -26,7 +26,7 @@ npm install [name]
 注意：本地安装需要首先定位到项目目录下，再运行 npm 命令
 安装好之后，name 包就放在了工程目录下的 node_modules 目录中，因此在代码中只需要通过 require('name') 的方式引用，无需指定第三方包路径。
 ```
-var express = require('name');
+const express = require('name');
 ```
 
 #### 全局安装与本地安装

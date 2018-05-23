@@ -13,7 +13,7 @@
 // Node.js 有多个内置的事件，我们可以通过引入 events 模块，并通过实例化 EventEmitter 类来绑定和监听事件，如下实例：
 
 // 引入 events 模块
-var events = require('events');
+const events = require('events');
 // 创建 eventEmitter 对象
 var eventEmitter = new events.EventEmitter();
 

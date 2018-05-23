@@ -11,7 +11,7 @@
 //     error - 在接收和写入过程中发生错误时触发。
 //     finish - 所有数据已被写入到底层系统时触发。
 
-var fs = require('fs');
+const fs = require('fs');
 
 /////////////////////// 读取流
 var data = '';
@@ -76,7 +76,7 @@ console.log('管道流 程序执行完毕。');
 // 接下来我们就用管道和链式来压缩和解压文件。
 
 // 引入压缩模块
-var zlib = require('zlib');
+const zlib = require('zlib');
 
 // 1.先执行，压缩文件并写入
 // fs.createReadStream('../files/a.txt')

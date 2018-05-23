@@ -9,7 +9,7 @@
 // function foo2(value, callback1, callback2) { }
 
 // 引入fs模块
-var fs = require('fs');
+const fs = require('fs');
 
 // 阻塞代码实例
 var data = fs.readFileSync("../files/a.txt");

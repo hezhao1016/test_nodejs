@@ -7,7 +7,7 @@
 // 你可以通过require("events");来访问该模块。
 
 // 创建 eventEmitter 对象
-var EventEmitter = require('events').EventEmitter;
+const EventEmitter = require('events').EventEmitter;
 var emitter = new EventEmitter();
 
 // EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。当添加新的监听器时，newListener 事件会触发，当监听器被移除时，removeListener 事件被触发。

@@ -1,11 +1,11 @@
-'use strict'; // 使用严格模式
-
 /**
  * Node.js 创建第一个应用
  */
 
+'use strict'; // 使用严格模式
+
 // 使用 require 指令来引入 http 模块
-var http = require("http");
+const http = require("http");
 
 // 创建服务器，绑定 8888 端口
 http.createServer(function (request, response) {

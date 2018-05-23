@@ -1,5 +1,5 @@
-function route(pathname) {
+function home(pathname) {
     console.log("About to route a request for " + pathname);
 }
 
-exports.route = route;
+exports.home = home;

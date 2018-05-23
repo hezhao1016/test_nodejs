@@ -10,27 +10,27 @@ CommonJS规范规定，每个模块内部，module变量代表当前模块。这
 */
 
 // 引入模块 ./ 为当前目录，node.js 默认后缀为 js
-var Example1 = require("./example1"); // 不要忘了写相对目录
+const Example1 = require("./example1"); // 不要忘了写相对目录
 example1 = new Example1();
 example1.setName("张三");
 example1.sayHello();
 
 console.log("------------------------");
-var example2 = require('./example2');
+const example2 = require('./example2');
 example2.world();
 
 console.log("------------------------");
-var greet = require('./example3');
+const greet = require('./example3');
 greet("Horace");
 
 console.log("------------------------");
-var example4 = require('./example4');
+const example4 = require('./example4');
 example4.hello();
 example4.greet("Horace");
 console.log(example4.foo());
 
 console.log("------------------------");
-var example5 = require('./example5');
+const example5 = require('./example5');
 example5.hello();
 example5.greet("Horace");
 console.log(example5.foo());
@@ -79,3 +79,19 @@ module.exports vs exports
 于是我们可以直接在 exports 对象上添加方法，表示对外输出的接口，如同在module.exports上添加一样。
 注意，不能直接将exports变量指向一个值，因为这样等于切断了exports与module.exports的联系。
 */
+
+
+// 模块加载顺序
+// 当 Node 遇到 require(X) 时，按下面的顺序处理。
+// （1）如果 X 是内置模块（比如 require('http'）)
+//     a. 返回该模块。
+//     b. 不再继续执行。
+// （2）如果 X 以 "./" 或者 "/" 或者 "../" 开头
+//     a. 根据 X 所在的父模块，确定 X 的绝对路径。
+//     b. 将 X 当成文件，依次查找下面文件，只要其中有一个存在，就返回该文件，不再继续执行。
+//     c. 将 X 当成目录，依次查找下面文件，只要其中有一个存在，就返回该文件，不再继续执行。
+// （3）如果 X 不带路径
+//     a. 根据 X 所在的父模块，确定 X 可能的安装目录。
+//     b. 依次在每个目录中，将 X 当成文件名或目录名加载。
+// （4） 抛出 "not found"
+// 参考：require 源码解读 - http://www.ruanyifeng.com/blog/2015/05/require.html
