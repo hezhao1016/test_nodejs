@@ -2,7 +2,6 @@
 // https://www.cnblogs.com/wushanbao/p/7003308.html
 
 const fs = require('fs');
-const path = require('path');
 
 // 异步和同步
 // Node.js 文件系统（fs 模块）模块中的方法均有异步和同步版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的 fs.readFileSync()。

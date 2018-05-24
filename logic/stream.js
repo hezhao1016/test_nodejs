@@ -51,7 +51,7 @@ writerStream.on('finish', function (){
     console.log('写入完成。');
 });
 writerStream.on('error', function (err){
-    console.error('Error:' + err.stack)
+    console.error('Error:' + err.stack);
 });
 
 console.log('写入流 程序执行完毕。');

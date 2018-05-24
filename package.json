@@ -1,0 +1,29 @@
+{
+  "name": "test_nodejs",
+  "description": "学习Node.js的Demo项目",
+  "version": "0.0.1",
+  "author": {
+    "name": "Horace",
+    "email": "hezhao_java@163.com"
+  },
+  "keywords": [
+    "node.js",
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/hezhao/test_nodejs"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "8.11.x"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "multer": "^1.3.0"
+  }
+}

@@ -71,8 +71,8 @@
 
 
 // 例子：逐行地读取文件流
-const readline = require('readline');
-const fs = require('fs');
+const readline = require('util/readline');
+const fs = require('logic/fs');
 
 const rl = readline.createInterface({
     input: fs.createReadStream('../files/a.txt'),

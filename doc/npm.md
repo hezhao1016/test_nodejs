@@ -1,25 +1,25 @@
-## NPM 使用介绍
+# NPM 使用介绍
 
-#### NPM是随同Node.js一起安装的包管理工具，能解决Node.js代码部署上的很多问题，常见的使用场景有以下几种：
+### NPM是随同Node.js一起安装的包管理工具，能解决Node.js代码部署上的很多问题，常见的使用场景有以下几种：
 - 允许用户从NPM服务器下载别人编写的第三方包到本地使用。
 - 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。
 - 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。
 
 由于新版的Node.js已经集成了npm，所以之前npm也一并安装好了。
-#### 可以通过输入 "npm -v" 来测试是否成功安装。命令如下，出现版本提示表示安装成功:
+### 可以通过输入 "npm -v" 来测试是否成功安装。命令如下，出现版本提示表示安装成功:
 ```
 npm -v
 6.0.1
 ```
 
-#### 如果你安装的是旧版本的 npm，可以通过 npm 命令来升级，命令如下：
+### 如果你安装的是旧版本的 npm，可以通过 npm 命令来升级，命令如下：
 ```
 npm install npm -g
 ```
 
-### npm 命令
+## npm 命令
 
-#### 安装模块
+### 安装模块
 ```
 npm install [name]
 ```
@@ -29,7 +29,7 @@ npm install [name]
 const express = require('name');
 ```
 
-#### 全局安装与本地安装
+### 全局安装与本地安装
 npm 的包安装分为本地安装（local）、全局安装（global）两种，从敲的命令行来看，差别只是有没有-g而已，比如：
 ```
 npm install [name]      # 本地安装
@@ -47,11 +47,12 @@ npm config set proxy null
 本地安装
 1. 将安装包放在 ./node_modules 下（运行 npm 命令时所在的目录），如果没有 node_modules 目录，会在当前执行 npm 命令的目录下生成 node_modules 目录。
 2. 可以通过 require() 来引入本地安装的包。
+
 全局安装
 1. 将安装包放在 /usr/local 下或者你 node 的安装目录。
 2. 可以直接在命令行里使用。
 
-#### 查看安装信息
+### 查看安装信息
 ```
 npm list
 npm list -g
@@ -74,7 +75,7 @@ npm search [name]
 ```
 
 
-### 使用淘宝 NPM 镜像,官方网址：http://npm.taobao.org/
+## 使用淘宝 NPM 镜像,官方网址：http://npm.taobao.org/
 在国内直接使用 npm 的官方镜像是非常慢的，这里推荐使用淘宝 NPM 镜像。
 淘宝 NPM 镜像是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。
 你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:
@@ -105,185 +106,83 @@ cnpm info connect
 ```
 
 
-#### 使用 package.json
+## 使用 package.json
 - name - 包名。
 - version - 包的版本号。
 - description - 包的描述。
 - homepage - 包的官网 url 。
 - author - 包的作者姓名。
 - contributors - 包的其他贡献者姓名。
-- dependencies - 依赖包列表。如果依赖包没有安装，npm 会自动将依赖包安装在 node_module 目录下。
+- dependencies - 项目运行阶段依赖包列表。如果依赖包没有安装，npm 会自动将依赖包安装在 node_module 目录下。
+- devDependencies - 指定项目开发阶段所需要的模块。
 - repository - 包代码存放的地方的类型，可以是 git 或 svn，git 可在 Github 上。
 - main - main 字段指定了程序的主入口文件，require('moduleName') 就会加载这个文件。这个字段的默认值是模块根目录下面的 index.js。
 - keywords - 关键字
+- scripts - 指定了运行脚本命令的npm命令行缩写
+- config - 添加命令行的环境变量
+- browser - 指定该模板供浏览器使用的版本
+- engines - 指明了该模块运行的平台，比如 Node 的某个版本或者浏览器。
 
-##### Node.js web框架模块 express 的 package.json 示例
+### 参考：[package.json文件详解](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
+
+### 详细解读
+- 模块对应的版本可以加上各种限定，主要有以下几种：
+  - 指定版本：比如1.2.2，遵循“大版本.次要版本.小版本”的格式规定，安装时只安装指定版本。
+  - 波浪号（tilde）+指定版本：比如~1.2.2，表示安装1.2.x的最新版本（不低于1.2.2），但是不安装1.3.x，也就是说安装时不改变大版本号和次要版本号。
+  - 插入号（caret）+指定版本：比如ˆ1.2.2，表示安装1.x.x的最新版本（不低于1.2.2），但是不安装2.x.x，也就是说安装时不改变大版本号。需要注意的是，如果大版本号为0，则插入号的行为与波浪号相同，这是因为此时处于开发阶段，即使是次要版本号变动，也可能带来程序的不兼容。
+  - latest：安装最新版本。
+- package.json文件可以手工编写，也可以使用npm init命令自动生成。
+  ```
+  npm init
+  ```
+  这个命令采用互动方式，要求用户回答一些问题，然后在当前目录生成一个基本的package.json文件。所有问题之中，只有项目名称（name）和项目版本（version）是必填的，其他都是选填的。
+
+- 有了package.json文件，直接使用npm install命令，就会在当前目录中安装所需要的模块。
+  ```
+  npm install
+  ```
+- 如果一个模块不在package.json文件之中，可以单独安装这个模块，并使用相应的参数，将其写入package.json文件之中。  
+  ```
+  npm install express --save
+  npm install express --save-dev
+  ```
+  上面代码表示单独安装express模块，--save参数表示将该模块写入dependencies属性，--save-dev表示将该模块写入devDependencies属性。
+
+### package.json 示例
 ```
 {
-  "name": "express",
-  "description": "Fast, unopinionated, minimalist web framework",
-  "version": "4.13.3",
-  "author": {
-    "name": "TJ Holowaychuk",
-    "email": "tj@vision-media.ca"
-  },
-  "contributors": [
-    {
-      "name": "Aaron Heckmann",
-      "email": "aaron.heckmann+github@gmail.com"
-    },
-    {
-      "name": "Ciaran Jessup",
-      "email": "ciaranj@gmail.com"
-    },
-    {
-      "name": "Douglas Christopher Wilson",
-      "email": "doug@somethingdoug.com"
-    },
-    {
-      "name": "Guillermo Rauch",
-      "email": "rauchg@gmail.com"
-    },
-    {
-      "name": "Jonathan Ong",
-      "email": "me@jongleberry.com"
-    },
-    {
-      "name": "Roman Shtylman",
-      "email": "shtylman+expressjs@gmail.com"
-    },
-    {
-      "name": "Young Jae Sim",
-      "email": "hanul@hanul.me"
-    }
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/strongloop/express.git"
-  },
-  "homepage": "http://expressjs.com/",
-  "keywords": [
-    "express",
-    "framework",
-    "sinatra",
-    "web",
-    "rest",
-    "restful",
-    "router",
-    "app",
-    "api"
-  ],
-  "dependencies": {
-    "accepts": "~1.2.12",
-    "array-flatten": "1.1.1",
-    "content-disposition": "0.5.0",
-    "content-type": "~1.0.1",
-    "cookie": "0.1.3",
-    "cookie-signature": "1.0.6",
-    "debug": "~2.2.0",
-    "depd": "~1.0.1",
-    "escape-html": "1.0.2",
-    "etag": "~1.7.0",
-    "finalhandler": "0.4.0",
-    "fresh": "0.3.0",
-    "merge-descriptors": "1.0.0",
-    "methods": "~1.1.1",
-    "on-finished": "~2.3.0",
-    "parseurl": "~1.3.0",
-    "path-to-regexp": "0.1.7",
-    "proxy-addr": "~1.0.8",
-    "qs": "4.0.0",
-    "range-parser": "~1.0.2",
-    "send": "0.13.0",
-    "serve-static": "~1.10.0",
-    "type-is": "~1.6.6",
-    "utils-merge": "1.0.0",
-    "vary": "~1.0.1"
-  },
-  "devDependencies": {
-    "after": "0.8.1",
-    "ejs": "2.3.3",
-    "istanbul": "0.3.17",
-    "marked": "0.3.5",
-    "mocha": "2.2.5",
-    "should": "7.0.2",
-    "supertest": "1.0.1",
-    "body-parser": "~1.13.3",
-    "connect-redis": "~2.4.1",
-    "cookie-parser": "~1.3.5",
-    "cookie-session": "~1.2.0",
-    "express-session": "~1.11.3",
-    "jade": "~1.11.0",
-    "method-override": "~2.3.5",
-    "morgan": "~1.6.1",
-    "multiparty": "~4.1.2",
-    "vhost": "~3.0.1"
-  },
-  "engines": {
-    "node": ">= 0.10.0"
-  },
-  "files": [
-    "LICENSE",
-    "History.md",
-    "Readme.md",
-    "index.js",
-    "lib/"
-  ],
-  "scripts": {
-    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/ test/acceptance/",
-    "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/ test/acceptance/",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/ test/acceptance/",
-    "test-tap": "mocha --require test/support/env --reporter tap --check-leaks test/ test/acceptance/"
-  },
-  "gitHead": "ef7ad681b245fba023843ce94f6bcb8e275bbb8e",
-  "bugs": {
-    "url": "https://github.com/strongloop/express/issues"
-  },
-  "_id": "express@4.13.3",
-  "_shasum": "ddb2f1fb4502bf33598d2b032b037960ca6c80a3",
-  "_from": "express@*",
-  "_npmVersion": "1.4.28",
-  "_npmUser": {
-    "name": "dougwilson",
-    "email": "doug@somethingdoug.com"
-  },
-  "maintainers": [
-    {
-      "name": "tjholowaychuk",
-      "email": "tj@vision-media.ca"
-    },
-    {
-      "name": "jongleberry",
-      "email": "jonathanrichardong@gmail.com"
-    },
-    {
-      "name": "dougwilson",
-      "email": "doug@somethingdoug.com"
-    },
-    {
-      "name": "rfeng",
-      "email": "enjoyjava@gmail.com"
-    },
-    {
-      "name": "aredridel",
-      "email": "aredridel@dinhe.net"
-    },
-    {
-      "name": "strongloop",
-      "email": "callback@strongloop.com"
-    },
-    {
-      "name": "defunctzombie",
-      "email": "shtylman@gmail.com"
-    }
-  ],
-  "dist": {
-    "shasum": "ddb2f1fb4502bf33598d2b032b037960ca6c80a3",
-    "tarball": "http://registry.npmjs.org/express/-/express-4.13.3.tgz"
-  },
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/express/-/express-4.13.3.tgz",
-  "readme": "ERROR: No README data found!"
+	"name": "Hello World",
+	"version": "0.0.1",
+	"author": "张三",
+	"description": "第一个node.js程序",
+	"keywords":["node.js","javascript"],
+	"repository": {
+		"type": "git",
+		"url": "https://path/to/url"
+	},
+	"license":"MIT",
+	"engines": {"node": "0.10.x"},
+	"bugs":{"url":"http://path/to/bug","email":"bug@example.com"},
+	"contributors":[{"name":"李四","email":"lisi@example.com"}],
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"express": "latest",
+		"mongoose": "~3.8.3",
+		"handlebars-runtime": "~1.0.12",
+		"express3-handlebars": "~0.5.0",
+		"MD5": "~1.2.0"
+	},
+	"devDependencies": {
+		"bower": "~1.2.8",
+		"grunt": "~0.4.1",
+		"grunt-contrib-concat": "~0.3.0",
+		"grunt-contrib-jshint": "~0.7.2",
+		"grunt-contrib-uglify": "~0.2.7",
+		"grunt-contrib-clean": "~0.5.0",
+		"browserify": "2.36.1",
+		"grunt-browserify": "~1.3.0",
+	}
 }
 ```
