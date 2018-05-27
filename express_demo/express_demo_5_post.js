@@ -2,6 +2,7 @@
 // 以下实例演示了在表单中通过 POST 方法提交两个参数，我们可以使用 server.js 文件内的 process_post 路由器来处理输入
 
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 
 var app = express();
@@ -10,6 +11,11 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended:false });
 
 app.use(express.static(__dirname + '/../public'));
+
+// 返回HTML页面
+app.get('/index', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/html', "express_post.html"));
+});
 
 // 使用urlencodedParser解析POST数据
 app.post('/process_post', urlencodedParser, function (req, res) {
@@ -30,4 +36,5 @@ var server = app.listen(8081, function () {
 });
 
 // 测试
+// http://127.0.0.1:8081/index
 // http://127.0.0.1:8081/html/express_post.html

@@ -3,6 +3,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 
@@ -14,6 +15,11 @@ app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.urlencoded({ extended:false }));
 // 设置文件上传临时路径
 app.use(multer({ dest:__dirname + '/../public/tmp/' }).array('image'));
+
+// 返回HTML页面
+app.get('/index', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/html', "express_upload.html"));
+});
 
 // 上传
 app.post('/file_upload', function (req, res) {
@@ -63,4 +69,5 @@ var server = app.listen(8081, function () {
 });
 
 // 测试
+// http://127.0.0.1:8081/index
 // http://127.0.0.1:8081/html/express_upload.html

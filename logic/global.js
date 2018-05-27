@@ -88,3 +88,11 @@ console.log('byvoid%diovyb', 1991);
 
 console.timeEnd('获取数据');
 console.info("程序执行完毕。");
+
+
+// 判断JavaScript执行环境
+if (typeof(window) === 'undefined') {
+    console.log('当前环境是 node.js');
+} else {
+    console.log('当前环境是 browser');
+}

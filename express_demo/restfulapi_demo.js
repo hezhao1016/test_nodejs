@@ -20,8 +20,11 @@ const express = require('express');
 const fs = require('fs');
 var app = express();
 
+// 使用路由，方便维护
+let apiRoutes = express.Router();
+
 // 获取用户列表
-app.get('/listUsers', function (req, res) {
+apiRoutes.get('/listUsers', function (req, res) {
    fs.readFile(__dirname + '/../files/users.json', 'utf8', function (err, data) {
       console.log(data);
       res.end(data);
@@ -29,7 +32,7 @@ app.get('/listUsers', function (req, res) {
 });
 
 // 添加用户
-app.get('/addUser', function (req, res) {
+apiRoutes.get('/addUser', function (req, res) {
    var user = {
        "user4" : {
            "name" : "赵六",
@@ -49,7 +52,7 @@ app.get('/addUser', function (req, res) {
 });
 
 // 显示用户详情
-app.get('/:id', function (req, res) {
+apiRoutes.get('/userDetail/:id', function (req, res) {
     // 读取已存在的用户列表
     fs.readFile(__dirname + '/../files/users.json', 'utf8', function (err, data) {
         data = JSON.parse(data);
@@ -61,7 +64,7 @@ app.get('/:id', function (req, res) {
 });
 
 // 删除用户
-app.get('/deleteUser/:id', function (req, res) {
+apiRoutes.get('/deleteUser/:id', function (req, res) {
    fs.readFile(__dirname + '/../files/users.json', 'utf8', function (err, data) {
        data = JSON.parse(data);
        // 删除
@@ -72,6 +75,9 @@ app.get('/deleteUser/:id', function (req, res) {
    });
 });
 
+// 使用路由
+app.use('/api', apiRoutes);
+
 var server = app.listen(8081, function () {
     var host = server.address().address;
     var port = server.address().port;
@@ -80,7 +86,7 @@ var server = app.listen(8081, function () {
 });
 
 // 测试
-// http://127.0.0.1:8081/listUsers
-// http://127.0.0.1:8081/addUser
-// http://127.0.0.1:8081/1
-// http://127.0.0.1:8081/deleteUser/1
+// http://127.0.0.1:8081/api/listUsers
+// http://127.0.0.1:8081/api/addUser
+// http://127.0.0.1:8081/api/userDetail/1
+// http://127.0.0.1:8081/api/deleteUser/1

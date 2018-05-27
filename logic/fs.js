@@ -1,4 +1,5 @@
 // fs 文件系统，Node.js 提供一组类似 UNIX（POSIX）标准的文件操作API。
+// 和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。
 // https://www.cnblogs.com/wushanbao/p/7003308.html
 
 const fs = require('fs');

@@ -2,9 +2,15 @@
 // 以下实例演示了在表单中通过 GET 方法提交两个参数，我们可以使用 server.js 文件内的 process_get 路由器来处理输入
 
 const express = require('express');
+const path = require('path');
 var app = express();
 
 app.use(express.static(__dirname + '/../public'));
+
+// 返回HTML页面
+app.get('/index', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/html', "express_get.html"));
+});
 
 app.get('/process_get', function (req, res) {
     // 输出JSON格式
@@ -24,4 +30,5 @@ var server = app.listen(8081, function () {
 });
 
 // 测试
+// http://127.0.0.1:8081/index
 // http://127.0.0.1:8081/html/express_get.html
