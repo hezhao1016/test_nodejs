@@ -6,6 +6,7 @@ const controller = require('./controller'); // 导入controller middleware
 
 const app = new Koa();
 
+// log request URL
 app.use(async (ctx, next) => {
     console.log(`Process ${ctx.method} ${ctx.url}...`);
     await next();

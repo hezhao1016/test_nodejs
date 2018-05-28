@@ -41,7 +41,7 @@ function createEnv(path, opts){
 }
 
 // 表示Nunjucks模板引擎对象
-var env = createEnv('view', {
+var env = createEnv('views', {
     watch: true,
     noCache: true, // 开发环境，关闭缓存
     filters: {
@@ -51,17 +51,21 @@ var env = createEnv('view', {
     }
 });
 
-
+// hello
 router.get('/hello', async (ctx, next) => {
     ctx.body = env.render('hello.html', {
         name: 'Horace'
     });
 });
+
+// 模板展示列表
 router.get('/list', async (ctx, next) => {
     ctx.body = env.render('list.html', {
         langs: ['Java', 'C#', 'Python', 'Node.js', 'Ruby', 'PHP', 'JavaScript']
     });
 });
+
+// 模板继承
 router.get('/extend', async (ctx, next) => {
     ctx.body = env.render('extend.html', {
         header: 'Hello', body: 'bla bla bla...'

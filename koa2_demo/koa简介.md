@@ -81,4 +81,6 @@ $ cnpm install koa@2.5.1 --save
 $ cnpm install koa-router@7.4.0 --save
 $ cnpm install koa-bodyparser@4.2.1 --save
 $ cnpm install nunjucks@3.1.3 --save
+$ cnpm install mime@1.3.4 --save
+$ cnpm install mz@2.4.0 --save
 ```
