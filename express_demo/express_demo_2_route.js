@@ -4,7 +4,7 @@ const express = require('express');
 var app = express();
 let router = express.Router();
 
-// 可以实现类似拦截器的功能
+// 可以实现类似过滤器的功能，类似于Java Filter
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -26,7 +26,7 @@ app.post('/', function (req, res) {
     res.send('Hello POST');
 });
 
-//  /list_user 页面 GET/POST 请求
+//  list_user 页面 ，可响应GET/POST 请求
 app.all('/list_user', function (req, res) {
     console.log("/list_user GET 请求");
     res.send('用户列表页面');

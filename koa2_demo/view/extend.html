@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nunjucks 模板继承</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block header %}<h1>{{ header }}</h1>{% endblock %}
+
+    {% block body %}<p>{{ body }}</p>{% endblock %}
+
+    <!-- footer没有重定义，所以仍使用父模板的内容 -->
+</body>
+</html>

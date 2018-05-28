@@ -9,12 +9,20 @@ const multer = require('multer');
 
 var app = express();
 
+// 临时路径
+var tmp_path = __dirname + "/../public/tmp/"
+fs.exists(tmp_path, function (exists) {
+    if(!exists){
+        fs.mkdir(tmp_path);
+    }
+});
+
 // 静态文件
 app.use(express.static(__dirname + '/../public'));
 // 创建 application/x-www-form-urlencoded 编码解析
 app.use(bodyParser.urlencoded({ extended:false }));
 // 设置文件上传临时路径
-app.use(multer({ dest:__dirname + '/../public/tmp/' }).array('image'));
+app.use(multer({ dest: tmp_path }).array('image'));
 
 // 返回HTML页面
 app.get('/index', function (req, res) {
@@ -29,7 +37,7 @@ app.post('/file_upload', function (req, res) {
     // 保存路径
     var save_path = __dirname + "/../public/upload/";
 
-    // 如果路径不存在就创建
+    // 如果保存路径不存在就创建
     fs.exists(save_path, function (exists) {
         if(!exists){
             fs.mkdir(save_path);

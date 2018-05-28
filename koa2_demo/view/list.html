@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nunjucks tag 标签测试</title>
+</head>
+<body>
+    <h1>编程语言列表</h1>
+    <ol>
+        {% for obj in langs %}
+        <li {% if obj=='Node.js' %} style="color: red;" {% endif %} >{{ obj }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
