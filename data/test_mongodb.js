@@ -1,6 +1,6 @@
 // Node.js 连接 MongoDB
 // MongoDB是一种文档导向数据库管理系统，由C++撰写而成。
-// 安装驱动：cnpm install mongodb --save
+// 安装驱动：$ cnpm install mongodb --save
 
 const mongodb = require('mongodb');
 

@@ -1,5 +1,5 @@
 // Node.js 连接 Redis
-// 安装驱动：cnpm install redis --save
+// 安装驱动：$ cnpm install redis --save
 
 // 连接到redis服务器
 const redis = require('redis'),

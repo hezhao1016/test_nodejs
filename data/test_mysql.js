@@ -1,6 +1,6 @@
 // Node.js 连接 MySQL
 // 数据库：websites.sql
-// 安装驱动：cnpm install mysql --save
+// 安装驱动：$ cnpm install mysql --save
 
 const mysql = require('mysql');
 
