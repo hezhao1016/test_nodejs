@@ -1,0 +1,14 @@
+{
+  "name": "hello-test",
+  "description": "学习 Mocha",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

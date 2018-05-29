@@ -1,0 +1,14 @@
+{
+  "name": "async-test",
+  "description": "学习 Mocha",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "mz": "2.4.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
