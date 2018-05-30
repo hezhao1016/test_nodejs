@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="learn javascript by www.liaoxuefeng.com">
+    <title>Vue 起步</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <script>
+        $(function () {
+           var app1 = new Vue({
+               // 指定要绑定的元素
+               el: '#app-1',
+               // 数据
+               data: {
+                   name: 'Robot',
+                   age: 15
+               }
+           });
+
+
+           var app2 = new Vue({
+                el: '#app-2',
+                data: {
+                    message: '页面加载于 ' + new Date().toLocaleString()
+                }
+           });
+
+           var app3 = new Vue({
+                el: '#app-3',
+                data: {
+                    seen: true
+                }
+           });
+
+           var app4 = new Vue({
+                el: '#app-4',
+                data: {
+                    todos: [
+                        { text: '学习 JavaScript' },
+                        { text: '学习 Vue' },
+                        { text: '整个牛项目' }
+                    ]
+                }
+           });
+
+           var app5 = new Vue({
+                el: '#app-5',
+                data: {
+                    message: 'Hello Vue.js!'
+                },
+                // 定义方法
+                methods: {
+                    reverseMessage: function () {
+                        this.message = this.message.split('').reverse().join('')
+                    }
+                }
+           });
+
+           var app6 = new Vue({
+                el: '#app-6',
+                data: {
+                    message: 'Hello Vue!'
+                }
+           });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="app-1">
+        <p>Hello, {{ name }}, You are {{ age }} years old.</p>
+        <p >Hello, <span v-text="name" ></span></p>
+    </div>
+
+    <!--通过指令绑定title-->
+    <hr/>
+    <div id="app-2">
+        <p v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </p>
+    </div>
+
+    <!--if-->
+    <hr/>
+    <div id="app-3">
+        <p v-if="seen">现在你看到我了</p>
+        <button v-on:click="seen=!seen">
+            <span v-if="seen">消失</span>
+            <span v-if="!seen">出来</span>
+        </button>
+    </div>
+
+    <!--循环-->
+    <hr/>
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+
+        <p>
+            <button v-on:click="todos.push({ text: '新项目'+(todos.length+1) })">新增一项</button>
+            <button v-on:click="todos.pop()">删除一项</button>
+        </p>
+
+        <p>
+            <input v-model="msg"/>
+            <button v-on:click="todos.push({ text: msg })">新增自定义内容</button>
+        </p>
+    </div>
+
+    <!--处理用户输入-->
+    <hr/>
+    <div id="app-5">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">逆转消息</button>
+    </div>
+
+    <!--双向绑定-->
+    <hr/>
+    <div id="app-6">
+        <p>1.{{ message }}</p>
+        <p>2.<input v-model="message"><p/>
+        <p>3.<input v-model="message"><p/>
+    </div>
+
+</body>
+
+</html>
