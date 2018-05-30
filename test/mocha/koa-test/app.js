@@ -13,6 +13,7 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx, next) => {
+    // ctx.request.query.name 获取GET请求参数
     var name = ctx.request.query.name || 'world';
     ctx.response.type = 'text/html';
     ctx.response.body = `<h1>Hello, ${name}!</h1>`;

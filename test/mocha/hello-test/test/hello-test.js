@@ -1,3 +1,10 @@
+// mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行。
+// 使用mocha，我们就只需要专注于编写单元测试本身，然后，让mocha去自动运行所有的测试，并给出测试结果。
+// mocha的特点主要有：
+// - 既可以测试简单的JavaScript函数，又可以测试异步代码，因为异步是JavaScript的特性之一；
+// - 可以自动运行所有测试，也可以只运行特定的测试；
+// - 可以支持before、after、beforeEach和afterEach来编写初始化代码。
+
 // mocha默认会执行test目录下的所有测试
 
 const assert = require('assert');

@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://gitee.com/hezhao/test_nodejs"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "engines": {
     "node": "8.11.x"
   },
@@ -43,7 +43,8 @@
     "redis": "^2.8.0",
     "sequelize": "^4.37.10",
     "uuid": "^3.2.1",
-    "winston": "^2.4.2"
+    "winston": "^2.4.2",
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "mocha": "^5.2.0"

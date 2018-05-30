@@ -12,7 +12,7 @@ const hash = crypto.createHash('md5');
 hash.update('Hello,World');
 hash.update('Hello,Node.js');
 
-console.log(hash.digest('hex'));
+console.log(`md5 hash: ${hash.digest('hex')}`);
 
 
 ////// Hmac
@@ -23,7 +23,7 @@ const hmac = crypto.createHmac('sha256', key);
 hmac.update('Hello,World');
 hmac.update('Hello,Node.js');
 
-console.log(hmac.digest('hex'));
+console.log(`hmac: ${hmac.digest('hex')}`);
 
 
 ////// AES
@@ -87,9 +87,9 @@ var iv = 'e6db271db12d4d47';
 var encrypted = aesEncryptIV(data, key, iv);
 var decrypted = aesDecryptIV(encrypted, key, iv);
 
-console.log('Plain text: ' + data);
-console.log('Encrypted text: ' + encrypted);
-console.log('Decrypted text: ' + decrypted);
+console.log('Plain text with iv: ' + data);
+console.log('Encrypted text with iv: ' + encrypted);
+console.log('Decrypted text with iv: ' + decrypted);
 
 
 ////// Diffie-Hellman

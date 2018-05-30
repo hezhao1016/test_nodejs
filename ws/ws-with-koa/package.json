@@ -1,0 +1,29 @@
+{
+  "name": "ws-with-koa",
+  "description": "使用 WebSocket 编写聊天室",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node --use_strict app.js"
+  },
+  "keywords": [
+    "websocket",
+    "ws",
+    "koa",
+    "async",
+    "nunjucks"
+  ],
+  "dependencies": {
+    "cookies": "^0.7.1",
+    "koa": "~2.5.1",
+    "koa-bodyparser": "~4.2.1",
+    "koa-router": "~7.4.0",
+    "mime": "1.3.4",
+    "mz": "2.4.0",
+    "nunjucks": "~3.1.3",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  }
+}
