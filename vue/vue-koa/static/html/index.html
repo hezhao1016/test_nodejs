@@ -82,7 +82,7 @@
                         that.$resource('/api/todos/' + todo.id).delete(todo.id).then(function (resp) {
                             var index = -1;
                             for(var i=0; i<that.todos.length;i++){
-                                if(that.todos[i].id == todo.id){
+                                if(that.todos[i].id === todo.id){
                                     index = i;
                                     break;
                                 }
