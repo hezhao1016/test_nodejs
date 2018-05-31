@@ -4,7 +4,7 @@ const express = require('express');
 var app = express();
 
 // 使用 express.static 中间件来设置静态文件路径
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
     res.send("Hello World!");

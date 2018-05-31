@@ -7,7 +7,7 @@ const path = require('path');
 var app = express();
 
 // 设置放模板文件的目录
-app.set('views', path.join(__dirname, '../public/templates'));
+app.set('views', path.join(__dirname, '/public/templates'));
 // 设置模板引擎
 app.set('view engine', 'jade');
 

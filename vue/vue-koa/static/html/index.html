@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="learn javascript by www.liaoxuefeng.com">
+    <title>Vue With Koa REST API</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/jquery-3.1.0.min.js"></script>
+    <script src="/static/js/vue-2.5.16.js"></script>
+    <!-- vue-resource 用于发送AJAX请求 -->
+    <script src="/static/js/vue-resource-1.5.1.js"></script>
+    <style>
+        #app-list{
+            width:40%;
+            border-right: 1px black solid;
+            margin-right: 10px;
+        }
+        #app-add{
+            margin-left: 10px;
+        }
+        #app-list ,#app-add{
+            float: left;
+        }
+    </style>
+    <script>
+        function showError (resp) {
+            resp.json().then(function (result) {
+                console.log('Error: ' + result.message);
+            });
+        }
+
+        $(function () {
+            var appList = new Vue({
+                el: '#app-list',
+                data: {
+                    title: 'TODO List',
+                    todos: []
+                },
+                created: function () { // 初始化时调用
+                    this.init();
+                },
+                methods: {
+                    init: function () { // 获取列表
+                        var that = this;
+                        that.$resource('/api/todos').get().then(function (resp) {
+                            resp.json().then(function (result) {
+                                that.todos = result.todos;
+                            });
+                        }, showError);
+                    },
+                    create: function (todo) {
+                        var that = this;
+                        that.$resource('/api/todos').save(todo).then(function (resp) {
+                            resp.json().then(function (result) {
+                                that.todos.push(result);
+                            });
+                        }, showError);
+                    },
+                    update: function (todo, prop, e) {
+                        var that = this;
+
+                        var t = {
+                            name: todo.name,
+                            description: todo.description
+                        };
+                        t[prop] = e.target.innerText;
+                        if (t[prop] === todo[prop]) {
+                            return;
+                        }
+
+                        that.$resource('/api/todos/' + todo.id).update(t).then(function (resp) {
+                            resp.json().then(function (result) {
+                                todo.name = result.name;
+                                todo.description = result.description;
+                            });
+                        }, showError);
+                    },
+                    remove: function (todo) {
+                        var that = this;
+                        that.$resource('/api/todos/' + todo.id).delete(todo.id).then(function (resp) {
+                            var index = -1;
+                            for(var i=0; i<that.todos.length;i++){
+                                if(that.todos[i].id == todo.id){
+                                    index = i;
+                                    break;
+                                }
+                            }
+
+                            if(index >= 0){
+                                that.todos.splice(index, 1);
+                            }
+                        }, showError);
+                    }
+                }
+            });
+            window.appList = appList;
+
+            var appAdd = new Vue({
+                el: '#app-add',
+                data: {
+                    name: '',
+                    description: ''
+                },
+                methods: {
+                    submit: function () {
+                        appList.create(this.$data);
+                        this.name = '';
+                        this.description = '';
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div class="main">
+        <div id="app-list">
+            <h3>{{ title }}</h3>
+            <ol>
+                <li v-for="t in todos">
+                    <dl>
+                        <!-- contenteditable="true"让DOM节点变成可编辑的 -->
+                        <!-- 特殊变量$event表示DOM事件本身 -->
+                        <dt contenteditable="true" v-on:blur="update(t, 'name', $event)">{{ t.name }}</dt>
+                        <dd contenteditable="true" v-on:blur="update(t, 'description', $event)">{{ t.description }}</dd>
+                        <dd><a href="#0" v-on:click="remove(t)">Delete</a></dd>
+                    </dl>
+                </li>
+            </ol>
+        </div>
+
+        <!-- 用.prevent表示阻止事件冒泡，这样，浏览器不再处理<form>的submit事件 -->
+        <form id="app-add" action="#0" v-on:submit.prevent="submit">
+            <h3>Add TODO</h3>
+            <p>Name:<br/><input type="text" v-model="name"></p>
+            <p>Description:<br/><input type="text" v-model="description"></p>
+            <p><button type="submit">Add</button></p>
+        </form>
+    </div>
+
+</body>
+
+</html>

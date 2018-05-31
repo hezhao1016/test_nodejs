@@ -19,7 +19,3 @@ app.use(staticFiles('/static/', __dirname + '/static'));
 
 app.listen(3000);
 console.log('app start at port 3000...');
-
-// 测试：
-// http://localhost:3000/static/test.html
-// http://localhost:3000/static/index.html

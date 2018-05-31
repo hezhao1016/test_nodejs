@@ -10,11 +10,11 @@ var app = express();
 // 创建 application/x-www-form-urlencoded 编码解析
 var urlencodedParser = bodyParser.urlencoded({ extended:false });
 
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/public'));
 
 // 返回HTML页面
 app.get('/index', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/html', "express_post.html"));
+    res.sendFile(path.join(__dirname, '/public/html', "express_post.html"));
 });
 
 // 使用urlencodedParser解析POST数据

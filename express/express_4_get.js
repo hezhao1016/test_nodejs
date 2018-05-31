@@ -5,11 +5,11 @@ const express = require('express');
 const path = require('path');
 var app = express();
 
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/public'));
 
 // 返回HTML页面
 app.get('/index', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/html', "express_get.html"));
+    res.sendFile(path.join(__dirname, '/public/html', "express_get.html"));
 });
 
 app.get('/process_get', function (req, res) {
